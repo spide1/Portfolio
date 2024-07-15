@@ -1,0 +1,68 @@
+.side-bar {
+    width: 20%;
+    height: 100vh;
+    position: fixed;
+    left: -450px;
+    top: 0;
+    background-color: #252422;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    transition: left 0.3s ease-in-out;
+    z-index: 100;
+}
+
+.side-bar.active {
+    left: 0;
+}
+
+.side-bar-name {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 1em;
+
+    border-bottom: 2px solid #fff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+
+.side-bar-name h1 {
+    margin: 0 0 0 1em;
+}
+
+.list-option-icons {
+    font-weight: 500;
+    margin: 0;
+}
+
+.side-bar-list {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 1em;
+}
+
+.side-bar-list-options {
+    width: 100%;
+    display: flex;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 500;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    border-radius: 0.8em;
+    transition: all 400ms;
+}
+
+.side-bar-list-options:hover {
+    background-color: #415a77;
+    border-radius: 0.8em;
+}
