@@ -17,9 +17,14 @@ class HomeController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('admin.create');
+            return redirect()->route('admin.index');
         }
 
         return redirect()->route('home.login')->withErrors('Login details are not valid');
+    }
+
+    public function logOut()
+    {
+        return redirect()->route('home.login');
     }
 }

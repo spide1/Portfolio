@@ -7,6 +7,10 @@
             background-color: #f8f9fa;
         }
 
+        li {
+            list-style-type: none;
+        }
+
         #create {
             width: 100%;
             height: 100vh;
@@ -83,4 +87,21 @@
 
         .form button:hover {
             background: #22577a;
+        }
+
+        .login-error {
+            width: fit-content;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-error p {
+            color: #800f2f;
+            background-color: #ff758f;
+            font-size: 1.05em;
+            font-weight: 600;
+            padding: 0.6em 1em;
+            border-radius: 10px;      
         }

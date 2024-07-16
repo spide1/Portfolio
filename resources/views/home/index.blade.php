@@ -1,30 +1,44 @@
-<link rel="stylesheet" href="<?php echo asset(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="<?php echo asset(
         "home/index.css"
     ); ?>" type="text/css">
-
-<div class="index">
+</head>
+<body>
+@include('home.sidebar')
 @include('home.navbar')
-
-    <div id="main-content">
-        <h1>User List</h1>
-        <div class="user-list">
-            @if($users->isEmpty())
-                <p>No users found.</p>
-            @else
-                <ul>
-                    @foreach($users as $user)
-                        <li>
-                            <div class="index-user-detail">
-                                {{ $user->name }} - {{ $user->email }}
-                            </div>
-
-                            <div class="index-edit-button">
-                                <button id="edit">Edit</button>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            @endif
-        </div>
-    </div>
-</div>
+    <h1>Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $index => $user)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>
+                        <a href="{{ route('admin.edit', $user->id) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</main>
+@include('home.footer')
+</body>
+</html>

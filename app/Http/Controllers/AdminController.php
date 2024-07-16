@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Home;
+use App\Models\About;
+use App\Models\Services;
+use App\Models\Contact;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,26 +22,56 @@ class AdminController extends Controller
         return view('home.create');
     }
 
+    public function edit($id)
+    {
+        $home = Home::find($id);
+        $about = About::find($id);
+        $services = Services::find($id);
+        $contact = Contact::find($id);
+
+        return view('home.edit', compact('home', 'about', 'services', 'contact'));
+    }
+
     public function index() 
     {
         $users = User::all();
         return view('home.index', compact('users'));
     }
 
-    public function upload(Request $request)
+    public function update(Request $request, $id)
     {
-        $file = $request->file('image');
+        $home = Home::find($id);
+        $about = About::find($id);
+        $services = Services::find($id);
+        $contact = Contact::find($id);
 
-        // Validate and store the file
-        $fileName = $file->getClientOriginalName();
-        $file->storeAs('images', $fileName); // Store in storage/app/images directory
+        $home->update($request->only(['heading', 'sub-heading', 'description']));
+        $about->update($request->only(['heading', 'highlight', 'description']));
+        $services->update($request->only(['heading', 'description']));
+        $contact->update($request->only(['email', 'address', 'phone1', 'phone2', 'facebook', 'instagram', 'location']));
 
-        // Optionally, save file information to database
-        // $image = new Image();
-        // $image->filename = $fileName;
-        // $image->save();
+        return redirect()->route('edit', $id)->with('success', 'Data updated successfully');
+    }
 
-        return back()->with('success', 'File uploaded successfully.');
-}
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        $user = Home::findOrFail($id);
+        $user->delete();
+
+        $user = About::findOrFail($id);
+        $user->delete();
+
+        $user = Services::findOrFail($id);
+        $user->delete();
+
+        $user = Contact::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
 
 }

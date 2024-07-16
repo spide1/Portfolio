@@ -33,12 +33,10 @@
         </form>
 
         @if ($errors->any())
-        <div>
-            <ul>
+        <div class="login-error">
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                    <p>{{ $error }}</p>
                 @endforeach
-            </ul>
         </div>
         @endif
     </div>
