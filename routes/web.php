@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontControllr;
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [HomeController::class, 'login'])->name('login');
@@ -14,4 +15,5 @@ Route::prefix('admin')->group(function () {
    
 });
 
+Route::get('index',[FrontControllr::class, 'front'])->name('index');
 
