@@ -56,14 +56,10 @@
 
         <div id="home-section" class="form-section">
             <div class="home-data">
-                <div class="image-upload">
-                    <label for="file-input-home" class="image-label">
-                        <img src="{{ asset('home/icons8-plus-48.png') }}" alt="Upload Image">
-                    </label>
-                    <input id="file-input-home" type="file" multiple name="images[]" accept="image/*" class="form-image" onchange="previewImages(event, 'image-preview-container-home')">
+                <div class="image-gallery" id="image-gallery">
+                    <label for="image-input" class="add-image">+</label>
+                    <input type="file" id="image-input" accept="image/*" multiple>
                 </div>
-                <div id="image-preview-container-home"></div>
-
 
                 <div id="home-text-data">
                     <div class="form-inputs">
@@ -84,11 +80,9 @@
 
         <div id="about-section" class="form-section">
             <div class="home-data">
-                <div class="image-upload">
-                    <label for="file-input-about">
-                        <img id="image-preview-about" src="{{ asset('home/icons8-plus-48.png') }}" alt="Upload Image">
-                    </label>
-                    <input id="file-input-about" type="file" multiple="multiple" name="image" accept="image/*" class="form-image" onchange="previewImage(event, 'image-preview-about')">
+                <div class="image-gallery" id="image-gallery">
+                    <label for="image-input" class="add-image">+</label>
+                    <input type="file" id="image-input" accept="image/*" multiple>
                 </div>
                 <div id="home-text-data">
                     <div class="form-inputs">
@@ -109,11 +103,9 @@
 
         <div id="services-section" class="form-section">
             <div class="home-data">
-                <div class="image-upload">
-                    <label for="file-input-services">
-                        <img id="image-preview-services" src="{{ asset('home/icons8-plus-48.png') }}" alt="Upload Image">
-                    </label>
-                    <input id="file-input-services" type="file" multiple="multiple" name="image" accept="image/*" class="form-image" onchange="previewImage(event, 'image-preview-services')">
+                <div class="image-gallery" id="image-gallery">
+                    <label for="image-input" class="add-image">+</label>
+                    <input type="file" id="image-input" accept="image/*" multiple>
                 </div>
                 <div id="home-text-data">
                     <div class="form-inputs">
@@ -144,11 +136,11 @@
                     <div class="contact-form-section">
                         <div class="form-inputs">
                             <input type="number" name="heading" class="home-heading input phone" placeholder=" ">
-                            <label for="heading" class="label">☎️ Phone No 1</label>
+                            <label for="heading" class="label">Phone No 1</label>
                         </div>
                         <div class="form-inputs">
                             <input type="number" name="heading" class="home-heading input phone" placeholder=" ">
-                            <label for="heading" class="label">☎️ Phone No 2</label>
+                            <label for="heading" class="label">Phone No 2</label>
                         </div>
                     </div>
                     <div class="contact-form-section">
@@ -163,7 +155,7 @@
                     </div>
                     <div class="form-inputs location">
                         <input type="text" name="heading" class="home-heading input" placeholder=" ">
-                        <label for="heading" class="label">🌎 Location</label>
+                        <label for="heading" class="label">Location</label>
                     </div>
                 </div>
             </div>
@@ -249,5 +241,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+const imageInput = document.getElementById('image-input');
+        const imageGallery = document.getElementById('image-gallery');
+        const addImageLabel = document.querySelector('.add-image');
+
+        function updateImageSizes() {
+            const images = imageGallery.querySelectorAll('.image-container');
+            const imageCount = images.length;
+            let size;
+
+            if (imageCount <= 1) {
+                size = 'calc(100% - 170px)'; // Full size minus add button and margins
+            } else if (imageCount <= 4) {
+                size = 'calc(50% - 15px)'; // Half size
+            } else {
+                size = 'calc(33.33% - 13.33px)'; // Third size
+            }
+
+            images.forEach(image => {
+                image.style.width = size;
+                image.style.height = size;
+            });
+        }
+
+        imageInput.addEventListener('change', function(event) {
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'image-container';
+
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    imageContainer.appendChild(img);
+
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'remove-image';
+                    removeButton.innerHTML = '×';
+                    removeButton.addEventListener('click', function() {
+                        imageGallery.removeChild(imageContainer);
+                        updateImageSizes();
+                    });
+                    imageContainer.appendChild(removeButton);
+
+                    imageGallery.insertBefore(imageContainer, addImageLabel.nextSibling);
+                    updateImageSizes();
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Initial call to set the correct size for the add button
+        updateImageSizes();
 </script>
 </html>
