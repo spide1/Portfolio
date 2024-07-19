@@ -16,4 +16,3 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('index',[FrontControllr::class, 'front'])->name('index');
-

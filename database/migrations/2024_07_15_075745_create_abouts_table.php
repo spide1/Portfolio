@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
             $table->string('heading');
-            $table->text('highlight');
             $table->string('description');
+            $table->string('show1');
+            $table->string('show2');
+            $table->string('show3');
+            $table->string('show4');
+            $table->string('show5');
             $table->string('image');
             $table->integer('u_id');
             $table->timestamps();

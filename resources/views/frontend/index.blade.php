@@ -21,8 +21,8 @@
 						<div class="content-column col-lg-7 col-md-12 col-sm-12">
 							<div class="inner-column">
 								<h2>{{ $data->heading }}</h2>
-								<div class="text">{{ $data->sub_heading }}</div>
-                                <div >{{ $data->description }}</div>
+								<div class="text">{{ $data->sub_heading }} <br>
+									{{ $data->description }}</div>
 								<div class="btns-box">
 									<a href="appointment.html" class="theme-btn btn-style-one">
 										<span class="btn-wrap">
@@ -53,16 +53,18 @@
 	<!-- End Slider Section -->
 	
 	<!-- Call To Action Section -->
+	@foreach ($headers as $item)
     <section class="call-to-action-section">
 		<div class="auto-container">
 			<div class="inner-container">
 				<div class="d-flex justify-content-between align-items-center flex-wrap">
 					<div class="appointment"><span class="icon flaticon-telephone"></span>Call For An Appointment</div>
-					<a class="phone" href="tel:+1-800-123-4567">+1 (800) 123-4567</a>
+					<a class="phone" href="tel:+91{{$item->number}}">+91 {{$item->number}}</a>
 				</div>
 			</div>
 		</div>
 	</section>
+	@endforeach
 	<!-- End Call To Action Section -->
 	
 	<!-- Services Section -->
@@ -114,31 +116,32 @@
 			<div class="row clearfix">
 				
 				<!-- Content Column -->
+				@foreach ($abouts as $about)
+					
 				<div class="content-column col-lg-7 col-md-12 col-sm-12">
 					<div class="inner-column">
 						
 						<!-- Sec Title -->
 						<div class="sec-title">
-							<div class="sec-title_title">About Merit</div>
-							<h2 class="sec-title_heading">Great passion for healing</h2>
+							<div class="sec-title_title">About Us</div>
+							<h2 class="sec-title_heading">{{$about->heading}}</h2>
 							<div class="sec-title_text">
-								<p>Some up and coming trends are healthcare consolidation for independent healthcare centers that see a cut in unforeseen payouts. High deductible health plans are also expected to transpire along with a growth of independent practices.</p>
-								<p>High deductible health plans are also expected to transpire along with a growth of independent practices.</p>
+								<p>{{$about->description}}.</p>
 							</div>
 						</div>
 						
 						<div class="row clearfix">
 							<div class="column col-lg-5 col-md-6 col-sm-12">
 								<ul class="list-style">
-									<li>Professional Team</li>
-									<li>Emergency Cases</li>
-									<li>Expert Doctors</li>
+									<li>{{$about->show1}}</li>
+									<li>{{$about->show2}}</li>
+									<li>{{$about->show3}}</li>
 								</ul>
 							</div>
 							<div class="column col-lg-5 col-md-6 col-sm-12">
 								<ul class="list-style">
-									<li>Modern Clinic</li>
-									<li>24/7 Help Center </li>
+									<li>{{$about->show4}}</li>
+									<li>{{$about->show5}} </li>
 								</ul>
 							</div>
 						</div>
@@ -152,6 +155,7 @@
 						</div>
 					</div>
 				</div>
+				@endforeach
 				
 				<!-- Image Column -->
 				<div class="image-column col-lg-5 col-md-12 col-sm-12">
@@ -168,7 +172,7 @@
 	</section>
 	<!-- End About Section -->
 	
-	<!-- Help Section -->
+	{{-- <!-- Help Section -->
 	<section class="help-section">
 		<div class="auto-container">
 			<div class="row clearfix">
@@ -205,7 +209,7 @@
 			</div>
 		</div>
 	</section>
-	<!-- End Help Section -->
+	<!-- End Help Section --> --}}
 	
 	<!-- Video Section -->
 	<section class="video-section" style="background-image: url(assets/images/background/1.jpg)">

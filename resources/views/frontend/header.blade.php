@@ -37,51 +37,53 @@
 	
  	<!-- Header Style One -->
     <header class="main-header">
-    	
-		<!-- Header Upper -->
-        <div class="header-upper">
-            <div class="auto-container">
-                <div class="d-flex justify-content-between align-items-center flex-wrap">
-                    
-                    <div class="logo-box">
-                        <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="" title=""></a></div>
-                    </div>
-                    
-                    <div class="upper-right d-flex flex-wrap">
-                        
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="flaticon-clock"></span></div>
-                            <ul>
-								<li><strong>Monday  - Friday  8:00 - 6:30</strong></li>
-                                <li>Saturday and Sunday - CLOSED</li>
-                            </ul>
-                        </div>
-                        
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="flaticon-send-mail"></span></div>
-                            <ul>
-                                <li><strong>+92 (8800) 9806</strong></li>
-                                <li><a href="mailto:needhelp@company.com">needhelp@company.com</a></li>
-                            </ul>
-                        </div>
-                        
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="flaticon-placeholder"></span></div>
-                            <ul>
-								<li><strong>New York. USA</strong></li>
-                                <li>80 Broklyn Golden Street</li>
-                            </ul>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <!--End Header Upper-->
+    	@foreach ($headers as $item)
+			<!-- Header Upper -->
+			<div class="header-upper">
+				<div class="auto-container">
+					<div class="d-flex justify-content-between align-items-center flex-wrap">
+						
+						<div class="logo-box">
+							<div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="" title=""></a></div>
+						</div>
+						
+						<div class="upper-right d-flex flex-wrap">
+							
+							<!--Info Box-->
+							<div class="upper-column info-box">
+								<div class="icon-box"><span class="flaticon-clock"></span></div>
+								<ul>
+									<li><strong>{{ $item->time_date }}</strong></li>
+									<li>{{$item->close_date}}</li>
+								</ul>
+							</div>
+							
+							<!--Info Box-->
+							<div class="upper-column info-box">
+								<div class="icon-box"><span class="flaticon-send-mail"></span></div>
+								<ul>
+									<li><strong>+92 {{$item->number}}</strong></li>
+									<li><a href="mailto:{{$item->email}}">{{$item->email}} </a></li>
+								</ul>
+							</div>
+							
+							<!--Info Box-->
+							<div class="upper-column info-box">
+								<div class="icon-box"><span class="flaticon-placeholder"></span></div>
+								<ul>
+									<li><strong>{{$item->location}}</strong></li>
+									<li>{{$item->sub_location}}</li>
+								</ul>
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!--End Header Upper-->
+		@endforeach
+		
 		
 		<!-- Header Lower -->
         <div class="header-lower">
@@ -117,27 +119,27 @@
 					<!-- Main Menu End-->
 					<div class="outer-box d-flex align-items-center flex-wrap">
 						
-						<div class="appointmeny_button-box">
+						{{-- <div class="appointmeny_button-box">
 							<a href="#" class="theme-btn btn-style-one">
 								<span class="btn-wrap">
 									<span class="text-one">Appoint Now</span>
 									<span class="text-two">Appoint Now</span>
 								</span>
 							</a>
-						</div>
+						</div> --}}
 						
 						<!-- Search Btn -->
 						<div class="search-box-btn search-box-outer"><span class="icon fa fa-search"></span></div>
 						
 						<!-- Nav Btn -->
-						<div class="nav-btn navSidebar-button fa-regular fa-cart-shopping fa-fw"></div>
+						{{-- <div class="nav-btn navSidebar-button fa-regular fa-cart-shopping fa-fw"></div> --}}
 						
 						<!-- Social Box -->
 						<ul class="header-social_box">
-							<li><a href="https://www.twitter.com/" class="fa-brands fa-twitter fa-fw"></a></li>
-							<li><a href="https://www.facebook.com/" class="fa-brands fa-facebook-f fa-fw"></a></li>
-							<li><a href="https://dribbble.com/" class="fa-brands fa-dribbble fa-fw"></a></li>
-							<li><a href="https://www.linkedin.com/" class="fa-brands fa-linkedin fa-fw"></a></li>
+							<li><a href="#" class="fa-brands fa-twitter fa-fw"></a></li>
+							<li><a href="#" class="fa-brands fa-facebook-f fa-fw"></a></li>
+							<li><a href="#" class="fa-brands fa-dribbble fa-fw"></a></li>
+							<li><a href="#" class="fa-brands fa-linkedin fa-fw"></a></li>
 						</ul>
 						
 					</div>
