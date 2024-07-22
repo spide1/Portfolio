@@ -18,12 +18,13 @@
                         <div class="row clearfix">
 							
 							<!--Footer Column-->
+							@foreach($footer as $item)
                             <div class="main-footer_column col-lg-7 col-md-6 col-sm-12">
                                 <div class="footer-widget logo-widget">
 									<div class="main-footer_logo">
                                     	<a href="index.html"><img src="assets/images/logo.png" alt="" /></a>
                                     </div>
-                                    <div class="main-footer_text">It helps designers plan out where the content will sit, the content to be written and approved.</div>
+                                    <div class="main-footer_text">{{$item->additionl1}}</div>
 									<!-- Social Box -->
 									<ul class="footer-social_box">
 										<li><a href="https://www.twitter.com/" class="fa-brands fa-twitter fa-fw"></a></li>
@@ -33,8 +34,8 @@
 									</ul>
 								</div>
 							</div>
-							
-							<!--Footer Column-->
+							@endforeach
+							{{-- <!--Footer Column-->
                             <div class="main-footer_column col-lg-5 col-md-6 col-sm-12">
                                 <div class="footer-widget links-widget">
 									<h4 class="main-footer_title">Service</h4>
@@ -47,7 +48,7 @@
 										<li><a href="#">Laboratory</a></li>
 									</ul>
 								</div>
-							</div>
+							</div> --}}
 							
 						</div>
 					</div>
@@ -56,7 +57,7 @@
                     <div class="big-column col-lg-6 col-md-12 col-sm-12">
                         <div class="row clearfix">
 							
-							<!--Footer Column-->
+							{{-- <!--Footer Column-->
                             <div class="main-footer_column col-lg-6 col-md-6 col-sm-12">
                                 <div class="footer-widget newsletter-widget">
 									<h4 class="main-footer_title">Newsletter</h4>
@@ -72,19 +73,22 @@
 									</div>
 								</div>
 							</div>
-							
+							 --}}
 							<!--Footer Column-->
-                            <div class="main-footer_column col-lg-6 col-md-6 col-sm-12">
+
+                            @foreach ($headers as $header)
+							<div class="main-footer_column col-lg-6 col-md-6 col-sm-12">
                                 <div class="footer-widget contact-widget">
 									<h4 class="main-footer_title">Contact Info</h4>
 									<ul class="main-footer_contact-list style-two">
-										<li><span class="icon fa-solid fa-phone fa-fw"></span>80 Broklyn Golden Street, New York. USA</li>
-										<li><span class="icon fa-solid fa-envelope fa-fw"></span> <a href="mailto:needhelp@company.com">needhelp@company.com</a></li>
-										<li><span class="icon fa-solid fa-clock fa-fw"></span>Mon - Sat 8:00 - 6:30, <br> Sunday - CLOSED</li>
+										<li><span class="icon fa-solid fa-phone fa-fw"></span>{{$header->sub_location}}</li>
+										<li><span class="icon fa-solid fa-envelope fa-fw"></span> <a href="mailto:{{$header->email}}">{{$header->email}}</a></li>
+										<li><span class="icon fa-solid fa-clock fa-fw"></span>{{$header->open_date}} <br> {{$header->close_date}}</li>
 									</ul>
 									
 								</div>
 							</div>
+							@endforeach
 							
 						</div>
 					</div>
@@ -95,7 +99,7 @@
 			<!-- Footer Bottom -->
 			<div class="main-footer_bottom">
 				<div class="d-flex justify-content-between align-items-center flex-wrap">
-					<div class="footer_copyright">Copyright 2024 merit All Rights Reserved</div>
+					<div class="footer_copyright">Copyright 2024 Ecotence All Rights Reserved</div>
 					<!-- Scroll To Top -->
 					<div class="footer-scroll_top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
 				</div>

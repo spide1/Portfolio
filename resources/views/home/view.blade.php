@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="<?php echo asset(
+    <link rel="stylesheet" href="<?php echo asset(
         "home/view.css"
     ); ?>" type="text/css">
 

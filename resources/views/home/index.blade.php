@@ -1,11 +1,18 @@
-<link rel="stylesheet" href="<?php echo asset(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="<?php echo asset(
         "home/index.css"
     ); ?>" type="text/css">
-
-<main>
+</head>
+<body>
 @include('layouts.sidebar')
 @include('layouts.nav')
-    <h1>Users List</h1>
+    <h1>Users</h1>
     <table>
         <thead>
             <tr>
@@ -32,3 +39,6 @@
         </tbody>
     </table>
 </main>
+@include('home.footer')
+</body>
+</html>

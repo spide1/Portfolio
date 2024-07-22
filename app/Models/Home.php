@@ -11,7 +11,6 @@ class Home extends Model
 
     protected $fillable = [
         'heading',
-        'sub_heading',
         'description',
         'image',
         'u_id',

@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('time__dates', function (Blueprint $table) {
             $table->id();
-            $table->string('time_date');
+            $table->string('title');
+            $table->string('description');
+            $table->string('g_map');
+            $table->string('open_date');
             $table->string('close_date');
             $table->integer('number');
             $table->string('email');

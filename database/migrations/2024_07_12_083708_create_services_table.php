@@ -17,9 +17,13 @@ return new class extends Migration
             $table->string('service_title');
             $table->text('description');
             $table->string('design1');
+            $table->string('description1');
             $table->string('design2');
+            $table->string('description2');
             $table->string('design3');
+            $table->string('description3');
             $table->string('design4');
+            $table->string('description4');
             $table->timestamps();
         });
     }

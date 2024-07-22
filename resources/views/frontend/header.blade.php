@@ -53,7 +53,7 @@
 							<div class="upper-column info-box">
 								<div class="icon-box"><span class="flaticon-clock"></span></div>
 								<ul>
-									<li><strong>{{ $item->time_date }}</strong></li>
+									<li><strong>{{ $item->open_date }}</strong></li>
 									<li>{{$item->close_date}}</li>
 								</ul>
 							</div>

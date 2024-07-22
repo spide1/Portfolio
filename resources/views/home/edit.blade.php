@@ -1,8 +1,8 @@
 
 @section('content')
 <div class="create-page">
-    @include('home.sidebar')
-    @include('home.navbar')
+    @include('layouts.sidebar')
+    @include('layouts.nav')
 
     <h4 class="Create-heading">Edit Page Details</h4>
 

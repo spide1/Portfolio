@@ -9,8 +9,10 @@ class Time_Date extends Model
 {
     use HasFactory;
     protected $fillable=[
-
-        'time_date',
+        'title',
+        'description',
+        'g_map',
+        'open_date',
         'close_date',
         'number',
         'email',

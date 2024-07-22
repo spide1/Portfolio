@@ -6,23 +6,22 @@
             <div class="slide">
 				<div class="auto-container">
 					<div class="row clearfix">
-						
+						@foreach($homeData as $data)
 						<!-- Image Column -->
 						<div class="image-column col-lg-5 col-md-12 col-sm-12">
 							<div class="inner-column">
 								<div class="image">
-									<img src="assets/images/main-slider/content-image.png" alt="" />
+									<img src="{{asset('assets/images/background_image/'.$data->image)}}" alt="" />
 								</div>
 							</div>
 						</div>
 						
 						<!-- Content Column -->
-                         @foreach($homeData as $data)
+                        
 						<div class="content-column col-lg-7 col-md-12 col-sm-12">
 							<div class="inner-column">
 								<h2>{{ $data->heading }}</h2>
-								<div class="text">{{ $data->sub_heading }} <br>
-									{{ $data->description }}</div>
+								<div class="text">{{ $data->description }} <br>
 								<div class="btns-box">
 									<a href="appointment.html" class="theme-btn btn-style-one">
 										<span class="btn-wrap">
@@ -67,7 +66,7 @@
 	@endforeach
 	<!-- End Call To Action Section -->
 	
-	<!-- Services Section -->
+	{{-- <!-- Services Section -->
     <section class="services-section">
 		<div class="auto-container">
 			<div class="row clearfix">
@@ -108,7 +107,7 @@
 			</div>
 		</div>
 	</section>
-	<!-- End Services Section -->
+	<!-- End Services Section --> --}}
 	
 	<!-- About Section -->
     <section class="about-section" id="about">
@@ -145,24 +144,24 @@
 								</ul>
 							</div>
 						</div>
-						<div class="button-box">
+						{{-- <div class="button-box">
 							<a href="about.html" class="theme-btn btn-style-one">
 								<span class="btn-wrap">
 									<span class="text-one">More About Us</span>
 									<span class="text-two">More About Us</span>
 								</span>
 							</a>
-						</div>
+						</div> --}}
 					</div>
 				</div>
-				@endforeach
+				
 				
 				<!-- Image Column -->
 				<div class="image-column col-lg-5 col-md-12 col-sm-12">
 					<div class="inner-column">
 						<div class="pattern-image" style="background-image: url(assets/images/resource/tablet.png)"></div>
 						<div class="image" data-tilt data-tilt-max="3">
-							<img src="assets/images/resource/cardialogy.jpg" alt="" />
+							<img src={{asset('/assets/images/about_image/'.$about->image)}} alt="" />
 						</div>
 					</div>
 				</div>
@@ -170,6 +169,7 @@
 			</div>
 		</div>
 	</section>
+	@endforeach
 	<!-- End About Section -->
 	
 	{{-- <!-- Help Section -->
@@ -211,16 +211,19 @@
 	</section>
 	<!-- End Help Section --> --}}
 	
-	<!-- Video Section -->
-	<section class="video-section" style="background-image: url(assets/images/background/1.jpg)">
+	@foreach ($bgimage as $item)
+		<!-- Video Section -->
+	<section class="video-section" style="background-image: url('{{ asset('/assets/images/background_image/'. $item->background_image1) }}')">
 		<div class="auto-container">
-			<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-video video-box"><span class="fa fa-play"><i class="ripple"></i></span></a>
+			<a href="{{$item->youtube_video}}" class="lightbox-video video-box"><span class="fa fa-play"><i class="ripple"></i></span></a>
 			<h4>Watch Our Video</h4>
 		</div>
 	</section>
 	<!-- End Video Section -->
+	@endforeach
 	
 	<!-- Services Section Two -->
+	@foreach ($service as $item)
 	<section class="services-section-two" id="services">
 		<div class="section-text variable-text"></div>
 		<div class="auto-container">
@@ -232,17 +235,17 @@
 						
 						<!-- Sec Title -->
 						<div class="sec-title">
-							<div class="sec-title_title">Our Services</div>
-							<h2 class="sec-title_heading">We provide quality <br> healthcare services</h2>
-							<div class="sec-title_text">Credibly innovate granular internal or “organic“ sources whereas high standards in web-readiness. Energistically scale future-proof core competencies vis-a-vis impactful experiences. Dramatically synthesize integrated schemas with optimal networks.</div>
+							<div class="sec-title_title">{{$item->service}}</div>
+							<h2 class="sec-title_heading">{{$item->service_title}}</h2>
+							<div class="sec-title_text">{{$item->description}}</div>
 						</div>
 						
-						<a href="about.html" class="theme-btn btn-style-one">
+						{{-- <a href="about.html" class="theme-btn btn-style-one">
 							<span class="btn-wrap">
 								<span class="text-one">View All Services</span>
 								<span class="text-two">View All Services</span>
 							</span>
-						</a>
+						</a> --}}
 						
 					</div>
 				</div>
@@ -258,8 +261,8 @@
 									<div class="number-box">
 										<div class="number">01</div>
 									</div>
-									<h4><a href="#">Physical therapy</a></h4>
-									<div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re behold had seed.</div>
+									<h4><a href="#">{{$item->design1}}</a></h4>
+									<div class="text">{{$item->description1}}</div>
 								</div>
 							</div>
 							
@@ -269,8 +272,8 @@
 									<div class="number-box">
 										<div class="number">02</div>
 									</div>
-									<h4><a href="#">Pediatric Services</a></h4>
-									<div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re behold had seed.</div>
+									<h4><a href="#">{{$item->design2}}</a></h4>
+									<div class="text">{{$item->description2}}</div>
 								</div>
 							</div>
 							
@@ -280,8 +283,8 @@
 									<div class="number-box">
 										<div class="number">03</div>
 									</div>
-									<h4><a href="#">Diagnostic Center</a></h4>
-									<div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re behold had seed.</div>
+									<h4><a href="#">{{$item->design3}}</a></h4>
+									<div class="text">{{$item->description3}}</div>
 								</div>
 							</div>
 							
@@ -291,8 +294,8 @@
 									<div class="number-box">
 										<div class="number">04</div>
 									</div>
-									<h4><a href="#">Healthcare Center</a></h4>
-									<div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re behold had seed.</div>
+									<h4><a href="#">{{$item->design4}}</a></h4>
+									<div class="text">{{$item->description4}}</div>
 								</div>
 							</div>
 							
@@ -303,10 +306,11 @@
 			</div>
 		</div>
 	</section>
+	@endforeach
 	<!-- End Services Section Two -->
 	
 	<!-- Team Section -->
-	<section class="team-section" id="team">
+	{{-- <section class="team-section" id="team">
 		<div class="auto-container">
 			
 			<!-- Sec Title -->
@@ -390,11 +394,13 @@
 			</div>
 			
 		</div>
-	</section>
+	</section> --}}
 	<!-- End Team Section -->
 	
 	<!-- Appointment Section -->
-	<section class="appointment-section" style="background-image: url(assets/images/background/5.jpg)">
+	@foreach($bgimage as $item)
+	<section class="appointment-section" style="background-image: url('{{asset('/assets/images/background_image/'.$item->background_image2	)}}')">
+		@endforeach
 		<div class="auto-container">
 			<div class="inner-container">
 				<div class="appointment-box">
@@ -473,13 +479,14 @@
 	<!-- End Appointment Section -->
 
     <!-- Contact One -->
+	@foreach ($headers as $header)
 	<section class="contact-one">
 		<div class="auto-container">
 			<!-- Sec Title -->
 			<div class="sec-title centered">
 				<div class="sec-title_title">CONTACT INFO</div>
-				<h2 class="sec-title_heading">Get in touch!</h2>
-				<div class="sec-title_text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore <br> magna aliqua. Ut enim ad minim.</div>
+				<h2 class="sec-title_heading">{{$header->title}}</h2>
+				<div class="sec-title_text">{{$header->description}}</div>
 			</div>
 			<div class="row clearfix">
 				
@@ -488,7 +495,7 @@
 					<div class="contact-info-block_inner">
 						<span class="contact-info-block_icon flaticon-placeholder"></span>
 						<h4 class="contact-info-block_heading">Clinic Address</h4>
-						<div class="contact-info-block_text">80 Broklyn Golden Street, New York, USA.</div>
+						<div class="contact-info-block_text">{{$header->sub_location}}</div>
 					</div>
 				</div>
 				
@@ -497,7 +504,7 @@
 					<div class="contact-info-block_inner">
 						<span class="contact-info-block_icon flaticon-send-mail"></span>
 						<h4 class="contact-info-block_heading">Email</h4>
-						<div class="contact-info-block_text"><a href="mailto:needhelp@company.com">needhelp@company.com</a><br> <a href="mailto:info@company.com">info@company.com</a></div>
+						<div class="contact-info-block_text"><a href="{{$header->email}}">{{$header->email}}</a></div>
 					</div>
 				</div>
 				
@@ -506,7 +513,7 @@
 					<div class="contact-info-block_inner">
 						<span class="contact-info-block_icon flaticon-clock"></span>
 						<h4 class="contact-info-block_heading">Office Time</h4>
-						<div class="contact-info-block_text">Mon - Sat 8:00 - 6:30, <br> Sunday - CLOSED</div>
+						<div class="contact-info-block_text">{{$header->open_date}}<br> {{$header->close_date}}</div>
 					</div>
 				</div>
 				
@@ -515,13 +522,14 @@
 					<div class="contact-info-block_inner">
 						<span class="contact-info-block_icon flaticon-telephone"></span>
 						<h4 class="contact-info-block_heading">Phone</h4>
-						<div class="contact-info-block_text"><a href="tel:+734-697-2907">(734) 697-2907</a><br> <a href="tel:+843-971-1906">(843) 971-1906</a></div>
+						<div class="contact-info-block_text"><a href="tel:{{$header->number}}">{{$header->number}}</a></div>
 					</div>
 				</div>
 				
 			</div>
 		</div>
 	</section>
+	
 	<!-- End Contact One -->
 
     
@@ -530,6 +538,7 @@
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805184.6331292129!2d144.49266890254142!3d-37.97123689954809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1574408946759!5m2!1sen!2s" allowfullscreen=""></iframe>
 	</section>
 	<!-- End Map One -->
+	@endforeach
 	
 	<section class="contact-form-one" id="contact">
 		<div class="auto-container">

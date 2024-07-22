@@ -9,8 +9,8 @@ class Footer extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'additionl-1',
-        'additionl-2',
+        'additionl1',
+        'additionl2',
         'u_id'
     ];
     public function user()
