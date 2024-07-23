@@ -5,8 +5,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\frontendCrontroller;
 
-Route::get('/', [frontendCrontroller::class, 'home'])->name('fontend.view');
-
 Route::get('/admin', [AdminController::class, 'home'])->name('home.login');
 Route::get('/admin/create', [AdminController::class, 'create'])->name('home.create');
 Route::get('/admin/index', [AdminController::class, 'index'])->name('home.index');

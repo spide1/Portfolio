@@ -56,9 +56,9 @@
 
         <div id="home-section" class="form-section">
             <div class="home-data">
-                <div class="image-gallery" id="image-gallery">
-                    <label for="image-input" class="add-image">+</label>
-                    <input type="file" id="image-input" accept="image/*" multiple>
+                <div class="image-gallery" id="home-image-gallery">
+                    <label for="home-image-input" class="add-image">+</label>
+                    <input type="file" id="home-image-input" class="section-image-input" accept="image/*" style="display: none;" multiple>
                 </div>
 
                 <div id="home-text-data">
@@ -80,9 +80,9 @@
 
         <div id="about-section" class="form-section">
             <div class="home-data">
-                <div class="image-gallery" id="image-gallery">
-                    <label for="image-input" class="add-image">+</label>
-                    <input type="file" id="image-input" accept="image/*" multiple>
+                <<div class="image-gallery" id="about-image-gallery">
+                    <label for="about-image-input" class="add-image">+</label>
+                    <input type="file" id="about-image-input" class="section-image-input" accept="image/*" multiple>
                 </div>
                 <div id="home-text-data">
                     <div class="form-inputs">
@@ -105,7 +105,7 @@
             <div class="home-data">
                 <div class="image-gallery" id="image-gallery">
                     <label for="image-input" class="add-image">+</label>
-                    <input type="file" id="image-input" accept="image/*" multiple>
+                    <input type="file" id="service-image-input" class="section-image-input" accept="image/*" multiple>
                 </div>
                 <div id="home-text-data">
                     <div class="form-inputs">
@@ -170,29 +170,8 @@
 @include('home.footer')
 </body>
 <script>
-function previewImages(event, previewContainerId) {
-    const files = event.target.files;
-    const previewContainer = document.getElementById(previewContainerId);
-
-    // Clear the container
-    previewContainer.innerHTML = '';
-
-    if (files) {
-        Array.from(files).forEach(file => {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.classList.add('preview-image');
-                previewContainer.appendChild(img);
-            }
-            reader.readAsDataURL(file);
-        });
-    }
-}
-
-
 document.addEventListener('DOMContentLoaded', function() {
+    // Navigation functionality
     const navItems = document.querySelectorAll('.create-navbar li');
     const formSections = document.querySelectorAll('.form-section');
 
@@ -215,55 +194,13 @@ document.addEventListener('DOMContentLoaded', function() {
             targetSection.classList.add('active');
         });
     });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-    const navItems = document.querySelectorAll('.create-navbar li');
-    const formSections = document.querySelectorAll('.form-section');
+    // Image upload functionality
+    const imageInputs = document.querySelectorAll('.section-image-input');
 
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Remove 'active' class from all nav items
-            navItems.forEach(navItem => navItem.classList.remove('active'));
-
-            // Add 'active' class to the clicked nav item
-            this.classList.add('active');
-
-            // Get target section id from data-section attribute
-            const targetSectionId = this.getAttribute('data-section');
-            const targetSection = document.getElementById(targetSectionId);
-
-            // Remove 'active' class from all form sections
-            formSections.forEach(section => section.classList.remove('active'));
-
-            // Add 'active' class to the target form section
-            targetSection.classList.add('active');
-        });
-    });
-});
-
-const imageInput = document.getElementById('image-input');
-        const imageGallery = document.getElementById('image-gallery');
-        const addImageLabel = document.querySelector('.add-image');
-
-        function updateImageSizes() {
-            const images = imageGallery.querySelectorAll('.image-container');
-            const imageCount = images.length;
-            let size;
-
-            if (imageCount <= 1) {
-                size = 'calc(100% - 170px)'; // Full size minus add button and margins
-            } else if (imageCount <= 4) {
-                size = 'calc(50% - 15px)'; // Half size
-            } else {
-                size = 'calc(33.33% - 13.33px)'; // Third size
-            }
-
-            images.forEach(image => {
-                image.style.width = size;
-                image.style.height = size;
-            });
-        }
+    imageInputs.forEach(imageInput => {
+        const imageGallery = imageInput.closest('.image-gallery');
+        const addImageLabel = imageGallery.querySelector('.add-image');
 
         imageInput.addEventListener('change', function(event) {
             const files = event.target.files;
@@ -284,19 +221,39 @@ const imageInput = document.getElementById('image-input');
                     removeButton.innerHTML = '×';
                     removeButton.addEventListener('click', function() {
                         imageGallery.removeChild(imageContainer);
-                        updateImageSizes();
+                        updateImageSizes(imageGallery);
                     });
                     imageContainer.appendChild(removeButton);
 
-                    imageGallery.insertBefore(imageContainer, addImageLabel.nextSibling);
-                    updateImageSizes();
+                    imageGallery.insertBefore(imageContainer, addImageLabel);
+                    updateImageSizes(imageGallery);
                 }
 
                 reader.readAsDataURL(file);
             }
         });
+    });
 
-        // Initial call to set the correct size for the add button
-        updateImageSizes();
+    function updateImageSizes(gallery) {
+    const images = gallery.querySelectorAll('.image-container');
+    const imageCount = images.length;
+    const size = '100px'; // Fixed size for all images
+
+    images.forEach(image => {
+        image.style.width = size;
+        image.style.height = size;
+    });
+
+    // Update the add-image button size
+    const addImageButton = gallery.querySelector('.add-image');
+    if (addImageButton) {
+        addImageButton.style.width = size;
+        addImageButton.style.height = size;
+    }
+}
+
+    // Initial call to set the correct size for the add buttons
+    document.querySelectorAll('.image-gallery').forEach(updateImageSizes);
+});
 </script>
 </html>
